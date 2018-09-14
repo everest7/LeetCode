@@ -10,6 +10,7 @@ public class KeyboardRow500 {
         System.out.println(Arrays.asList(kb.findWords(input)));
 
     }
+    // Using HashSet
     public String[] findWords(String[] words) {
         ArrayList<String> res = new ArrayList<>();
         Character[] stringRow1 = new Character[] {'q','w','e','r','t','y','u','i','o','p'};
