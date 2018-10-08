@@ -34,7 +34,7 @@ public class ReverseVowelStr345 {
         }
         return new String(res);
     }
-    
+
 //    public String reverseVowels(String s) {
 //        int i = 0, j = s.length() - 1;
 //        String vowel = "aeiouAEIOU";
