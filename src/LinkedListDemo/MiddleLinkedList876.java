@@ -17,7 +17,7 @@ public class MiddleLinkedList876 {
         linkedList.printAfter(ml.middleNode(linkedList.head));
 
     }
-    public LinkedListDemo.LinkedList.ListNode middleNode(ListNode head) {
+    public ListNode middleNode(ListNode head) {
         int count = 1;
         ListNode curNode = head;
         while (curNode.next != null){

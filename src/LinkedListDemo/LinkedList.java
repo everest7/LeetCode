@@ -2,6 +2,8 @@ package LinkedListDemo;
 
 public class LinkedList {
     public ListNode head;
+    public ListNode tail;
+    public int size = 0;
 
     public static class ListNode{
         int data;
@@ -9,6 +11,32 @@ public class LinkedList {
         ListNode(int data){
             this.data = data;
             this.next = null;
+        }
+    }
+    public void addNodeAtStart(int data){
+        ListNode n = new ListNode(data);
+        if(size==0){
+            head = n;
+            tail = n;
+            n.next = head;
+        }else{
+            ListNode temp = head;
+            n.next = temp;
+            head = n;
+            tail.next = head;
+        }
+        size++;
+    }
+
+    public void addNodeAtEnd(int data){
+        if(size==0){
+            addNodeAtStart(data);
+        }else{
+            ListNode n = new ListNode(data);
+            tail.next =n;
+            tail=n;
+            tail.next = head;
+            size++;
         }
     }
 
@@ -27,6 +55,10 @@ public class LinkedList {
         newNode.next = node.next;
         node.next = newNode;
     }
+    public void addNodeAtLast(int data){
+        ListNode newnode = new ListNode(data);
+
+    }
 
     public void append(int data){
         ListNode newNode = new ListNode(data);
@@ -39,6 +71,7 @@ public class LinkedList {
             curNode = curNode.next;
         }
         curNode.next = newNode;
+//        newNode.next = head;
         return;
 
     }
