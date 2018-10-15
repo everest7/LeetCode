@@ -55,8 +55,17 @@ public class LinkedList {
         newNode.next = node.next;
         node.next = newNode;
     }
-    public void addNodeAtLast(int data){
-        ListNode newnode = new ListNode(data);
+    public void addNodeAtLast(ListNode node){
+        if (head == null){
+            head = node;
+        } else {
+
+            ListNode cur = head;
+            while (cur.next != null){
+                cur = cur.next;
+            }
+            cur.next = node;
+        }
 
     }
 
@@ -77,6 +86,13 @@ public class LinkedList {
     }
 
     public void printList(ListNode node){
+        if (node == head){
+            ListNode curNode = head;
+            while (curNode != null){
+                System.out.print(curNode.data + " ");
+                curNode = curNode.next;
+            }
+        }
         ListNode curNode = node;
         while (curNode != null){
             System.out.print(curNode.data + " ");
@@ -84,6 +100,7 @@ public class LinkedList {
         }
     }
     public void printAfter(ListNode node){
+
         ListNode curNode = head;
         while (curNode != node){
             curNode = curNode.next;
