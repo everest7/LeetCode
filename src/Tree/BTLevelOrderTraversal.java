@@ -15,6 +15,7 @@ public class BTLevelOrderTraversal {
         bt.root.right.left = new TreeNode(15);
         bt.root.right.right = new TreeNode(7);
 
+
         BTLevelOrderTraversal bl = new BTLevelOrderTraversal();
         System.out.println(bl.levelOrder(bt.root));
 
