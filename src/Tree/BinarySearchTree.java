@@ -38,11 +38,11 @@ public class BinarySearchTree {
         } else if(key > root.val){
             root.right = delete(root.right, key);
         } else {
-            if (root.left == null){
+            if (root.left == null){ // The node to be deleted is a leaf node
                 return root.right;
-            } else if (root.right == null){
+            } else if (root.right == null){ // The node to be deleted has only one child
                 return root.left;
-            } else {
+            } else { // The node to be deleted has two children
                 root.val = minValue(root.right);
                 root.right = delete(root.right, root.val);
 
