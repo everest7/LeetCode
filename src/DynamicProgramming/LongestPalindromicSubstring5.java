@@ -6,15 +6,20 @@ public class LongestPalindromicSubstring5 {
         String s = "babad";
         System.out.println(lp.longestPalindrome(s));
     }
-    /*
-    DP:
+
+    /**
+     * DP solution.
+     * j - i <= 2 since there are cases like "a", "aa", "aba" in which dp[i + 1][j - 1]
+     * does not exist, but we know that they are palindromic.
+     * @param s
+     * @return
      */
     public String longestPalindrome(String s){
         boolean[][] dp = new boolean[s.length()][s.length()];
         String res = "";
         for (int j = 0; j < s.length(); j++){
             for (int i = 0; i <= j; i++){
-                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
+                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1]);
                 if (dp[i][j] && res.length() < j - i + 1){
                     res = s.substring(i, j + 1);
                 }
