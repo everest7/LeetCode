@@ -5,21 +5,25 @@ public class LinkedList {
     public ListNode tail;
     public int size = 0;
 
-    public static class ListNode{
+    public static class ListNode {
         int data;
         ListNode next;
-        ListNode(int data){
+
+        public ListNode(int data) {
             this.data = data;
             this.next = null;
         }
+
+
     }
-    public void addNodeAtStart(int data){
+
+    public void addNodeAtStart(int data) {
         ListNode n = new ListNode(data);
-        if(size==0){
+        if (size == 0) {
             head = n;
             tail = n;
             n.next = head;
-        }else{
+        } else {
             ListNode temp = head;
             n.next = temp;
             head = n;
@@ -28,26 +32,26 @@ public class LinkedList {
         size++;
     }
 
-    public void addNodeAtEnd(int data){
-        if(size==0){
+    public void addNodeAtEnd(int data) {
+        if (size == 0) {
             addNodeAtStart(data);
-        }else{
+        } else {
             ListNode n = new ListNode(data);
-            tail.next =n;
-            tail=n;
+            tail.next = n;
+            tail = n;
             tail.next = head;
             size++;
         }
     }
 
-    public void push(int data){
+    public void push(int data) {
         ListNode newNode = new ListNode(data);
         newNode.next = head;
         head = newNode;
     }
 
-    public void insert(ListNode node, int data){
-        if (node == null){
+    public void insert(ListNode node, int data) {
+        if (node == null) {
             System.out.println("Current node cannot be null");
             return;
         }
@@ -55,13 +59,14 @@ public class LinkedList {
         newNode.next = node.next;
         node.next = newNode;
     }
-    public void addNodeAtLast(ListNode node){
-        if (head == null){
+
+    public void addNodeAtLast(ListNode node) {
+        if (head == null) {
             head = node;
         } else {
 
             ListNode cur = head;
-            while (cur.next != null){
+            while (cur.next != null) {
                 cur = cur.next;
             }
             cur.next = node;
@@ -69,14 +74,14 @@ public class LinkedList {
 
     }
 
-    public void append(int data){
+    public void append(int data) {
         ListNode newNode = new ListNode(data);
-        if (head == null){
+        if (head == null) {
             head = newNode;
             return;
         }
         ListNode curNode = head;
-        while (curNode.next != null){
+        while (curNode.next != null) {
             curNode = curNode.next;
         }
         curNode.next = newNode;
@@ -85,35 +90,37 @@ public class LinkedList {
 
     }
 
-    public void printList(ListNode node){
-        if (node == head){
-            ListNode curNode = head;
-            while (curNode != null){
-                System.out.print(curNode.data + " ");
-                curNode = curNode.next;
-            }
-        }
+    public void printList(ListNode node) {
+//        if (node == head) {
+//            ListNode curNode = head;
+//            while (curNode != null) {
+//                System.out.print(curNode.data + " ");
+//                curNode = curNode.next;
+//            }
+//        }
         ListNode curNode = node;
-        while (curNode != null){
+        while (curNode != null) {
             System.out.print(curNode.data + " ");
             curNode = curNode.next;
         }
     }
-    public void printAfter(ListNode node){
+
+    public void printAfter(ListNode node) {
 
         ListNode curNode = head;
-        while (curNode != node){
+        while (curNode != node) {
             curNode = curNode.next;
         }
-        while (curNode != null){
+        while (curNode != null) {
             System.out.print(curNode.data + " ");
             curNode = curNode.next;
         }
     }
+
     public ListNode reverseList(ListNode node) {
         ListNode curNode = node;
         ListNode next, prev = null;
-        while (curNode != null){
+        while (curNode != null) {
             next = curNode.next;
             curNode.next = prev;
             prev = curNode;

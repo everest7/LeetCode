@@ -9,7 +9,7 @@ public class TopKFrequentElements347 {
         System.out.println(tp.topKFrequent(nums, 2));
     }
 
-    // Creating a maxHeap to store the entry by its value.
+    // Creating a right to store the entry by its value.
     public List<Integer> topKFrequent(int[] nums, int k) {
         List<Integer> res = new ArrayList<>();
         HashMap<Integer, Integer> map = new HashMap<>();

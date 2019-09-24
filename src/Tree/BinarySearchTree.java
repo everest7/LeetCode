@@ -32,20 +32,36 @@ public class BinarySearchTree {
     }
 
     public BSTNode delete(BSTNode root, int key){
-        if (root == null) return root;
-        if (key < root.val){
+//        if (root == null) return root;
+//        if (key < root.val){
+//            root.left = delete(root.left, key);
+//        } else if(key > root.val){
+//            root.right = delete(root.right, key);
+//        } else {
+//            if (root.left == null){ // The node to be deleted has only right child
+//                return root.right;
+//            } else if (root.right == null){ // The node to be deleted has only left child
+//                return root.left;
+//            } else { // The node to be deleted has two children
+//                root.val = minValue(root.right);
+//                root.right = delete(root.right, root.val);
+//
+//            }
+//        }
+//        return root;
+        if (root == null) return null;
+        if (root.val > key) {
             root.left = delete(root.left, key);
-        } else if(key > root.val){
+        } else if (root.val < key) {
             root.right = delete(root.right, key);
         } else {
-            if (root.left == null){ // The node to be deleted is a leaf node
-                return root.right;
-            } else if (root.right == null){ // The node to be deleted has only one child
+            if (root.right == null && root.left != null) {
                 return root.left;
-            } else { // The node to be deleted has two children
+            } else if (root.left == null && root.right != null) {
+                return root.right;
+            } else {
                 root.val = minValue(root.right);
                 root.right = delete(root.right, root.val);
-
             }
         }
         return root;
@@ -62,9 +78,9 @@ public class BinarySearchTree {
 
     public void inorder(BSTNode root){
         if (root != null){
-            inorder(root.left);
-            System.out.print(root.val + " ");
             inorder(root.right);
+            System.out.print(root.val + " ");
+            inorder(root.left);
         }
     }
 
@@ -77,7 +93,7 @@ public class BinarySearchTree {
         bst.insert(bst.root,70);
         bst.insert(bst.root,60);
         bst.insert(bst.root,80);
-        bst.delete(bst.root,30);
+//        bst.delete(bst.root,30);
         bst.inorder(bst.root);
     }
 }

@@ -2,13 +2,17 @@ package DynamicProgramming;
 
 import java.util.Arrays;
 
+/**
+ * Review 6/19/2019
+ */
+
 public class CountBits338 {
     public static void main(String[] args) {
         CountBits338 cb = new CountBits338();
         System.out.println(Arrays.toString(cb.countBits(8)));
     }
 
-    /*
+    /**
     DP + last set bit
     P(x) = P(x & (x - 1)) + 1
      */
@@ -37,6 +41,10 @@ public class CountBits338 {
 //        return res;
 //    }
 
+    /**
+     * The first half of bits of [4, 5, 6, 7] and be generated from bits of [2, 3],
+     * the second half can be generated from adding 1 to the first half.
+     */
 //    public int[] countBits(int num) {
 //        int[] res = new int[num + 1];
 //        int i = 0, b = 1;

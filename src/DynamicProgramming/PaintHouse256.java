@@ -8,25 +8,46 @@ public class PaintHouse256 {
         System.out.println(ph.minCost(costs));
 
     }
+
+    /**
+     * Construct a dp[i][j] array to store the minimum cost for painting house i with j color
+     */
+    public int minCost(int[][] costs) {
+        int[][] dp = new int[costs.length + 1][3];
+        for (int i = 1; i <= costs.length; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (j == 0) {
+                    dp[i][j] = costs[i - 1][j] + Math.min(dp[i - 1][j + 1], dp[i - 1][j + 2]);
+                }
+                if (j == 1) {
+                    dp[i][j] = costs[i - 1][j] + Math.min(dp[i - 1][j - 1], dp[i - 1][j + 1]);
+                }
+                if (j == 2) {
+                    dp[i][j] = costs[i - 1][j] + Math.min(dp[i - 1][j - 1], dp[i - 1][j - 1]);
+                }
+            }
+        }
+        return Math.min(dp[costs.length][0], Math.min(dp[costs.length][1], dp[costs.length][2] ));
+    }
     /*
     DP solution
     Reduce the 2 dimension array to three constants
      */
-    public int minCost(int[][] costs){
-        if (costs.length == 0) return 0;
-        int lastR = costs[0][0];
-        int lastB = costs[0][1];
-        int lastG = costs[0][2];
-        for (int i = 1; i < costs.length; i++){
-            int curR = Math.min(lastB, lastG) + costs[i][0];
-            int curB = Math.min(lastR, lastG) + costs[i][1];
-            int curG = Math.min(lastR, lastB) + costs[i][2];
-            lastR = curR;
-            lastB = curB;
-            lastG = curG;
-        }
-        return Math.min(lastR, Math.min(lastB, lastG));
-    }
+//    public int minCost(int[][] costs){
+//        if (costs.length == 0) return 0;
+//        int lastR = costs[0][0];
+//        int lastB = costs[0][1];
+//        int lastG = costs[0][2];
+//        for (int i = 1; i < costs.length; i++){
+//            int curR = Math.min(lastB, lastG) + costs[i][0];
+//            int curB = Math.min(lastR, lastG) + costs[i][1];
+//            int curG = Math.min(lastR, lastB) + costs[i][2];
+//            lastR = curR;
+//            lastB = curB;
+//            lastG = curG;
+//        }
+//        return Math.min(lastR, Math.min(lastB, lastG));
+//    }
 
 //    public int minCost(int[][] costs) {
 //        if (costs.length == 0) return 0;

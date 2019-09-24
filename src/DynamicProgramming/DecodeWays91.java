@@ -10,13 +10,23 @@ public class DecodeWays91 {
 
     /**
      * Bottom up
+     * Define state
+     * dp[i] denotes the # of decode ways until s[1:i]
+     *
+     * Base case:
+     * dp[0] = 1 since empty string has only one decode way
+     * dp[1] = s[1] == 0 ? 0 : 1
+     *
+     * Recurrence Relation:
+     * dp[i] = dp[i] + dp[i - 1] if 1 <= s[i] <= 9
+     * dp[i] = dp[i] + dp[i - 1] if 10 <= s[i-1, i] <= 26
      */
     public int numDecodings(String s) {
         if (s.isEmpty() || (s.length() > 1 && s.charAt(0) == '0')) return 0;
         int len = s.length();
         int[] dp = new int[len + 1];
-        dp[0] = 1;
-        dp[1] = s.charAt(0) == '0' ? 0 : 1;
+        dp[0] = 1; // Empty string has only one way to decode
+        dp[1] = s.charAt(0) == '0' ? 0 : 1; // string of size 1 has one way to decode, except '0'
         for (int i = 2; i < len + 1; i++) {
             int first = Integer.parseInt(s.substring(i - 1, i));
             int second = Integer.parseInt(s.substring(i - 2, i));

@@ -3,33 +3,50 @@ package DynamicProgramming;
 public class HouseRobberII213 {
     public static void main(String[] args) {
         HouseRobberII213 hr = new HouseRobberII213();
-        int[] nums = {1, 2, 3, 1};
+//        int[] nums = {1, 2, 3, 1};
+        int[] nums = {0, 0};
         System.out.println(hr.rob(nums));
 
     }
+
+    public int rob(int[] nums) {
+        if (nums.length == 0) return 0;
+        return Math.max(houseRob(nums, 0, nums.length - 1), houseRob(nums, 1, nums.length));
+    }
+
+    public int houseRob(int[] nums, int begin, int end) {
+        int[] dp = new int[end];
+        dp[begin] = nums[begin];
+        dp[begin + 1] = Math.max(nums[begin], nums[begin + 1]);
+        for (int i = begin + 2; i < end; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+        return dp[end - 1];
+    }
+
     /*
     Using constants to replace array
      */
-    public int rob(int[] nums){
-        if (nums.length == 0) return 0;
-        if (nums.length == 1) return nums[0];
-        int rob1 = 0, rob2 = 0;
-        int sum1 = 0, sum2 = 0;
-        // Start robbing from house 1
-        for (int i = 0; i < nums.length - 1; i++){
-            sum1 = Math.max(rob1 + nums[i], rob2);
-            rob1 = rob2;
-            rob2 = sum1;
-        }
-        rob1 = 0;
-        rob2 = 0;
-        for (int i = 1; i < nums.length; i++){
-            sum2 = Math.max(rob1 + nums[i], rob2);
-            rob1 = rob2;
-            rob2 = sum2;
-        }
-        return Math.max(sum1, sum2);
-    }
+//    public int rob(int[] nums){
+//        if (nums.length == 0) return 0;
+//        if (nums.length == 1) return nums[0];
+//        int rob1 = 0, rob2 = 0;
+//        int sum1 = 0, sum2 = 0;
+//        // Start robbing from house 1
+//        for (int i = 0; i < nums.length - 1; i++){
+//            sum1 = Math.max(rob1 + nums[i], rob2);
+//            rob1 = rob2;
+//            rob2 = sum1;
+//        }
+//        rob1 = 0;
+//        rob2 = 0;
+//        for (int i = 1; i < nums.length; i++){
+//            sum2 = Math.max(rob1 + nums[i], rob2);
+//            rob1 = rob2;
+//            rob2 = sum2;
+//        }
+//        return Math.max(sum1, sum2);
+//    }
 
     /*
     Modified version from House RobberI

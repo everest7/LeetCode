@@ -4,11 +4,26 @@ import java.util.Stack;
 
 public class ValidPalindrome125 {
     public static void main(String[] args) {
-        String st = "0P";
+        String st = "A man, a plan, a canal: Panama";
         String st2 = "race a car";
         ValidPalindrome125 vp = new ValidPalindrome125();
-        System.out.println(vp.isPalindrome(st2));
+        System.out.println(vp.isPalindrome(st));
     }
+
+//    public boolean isPalindrome(String s) {
+//        String t = s.toLowerCase();
+//        char[] ts = t.toCharArray();
+//        int i = 0, j = ts.length - 1;
+//        while (i < j) {
+//            if (!Character.isLetterOrDigit(ts[i])) i++;
+//            if (!Character.isLetterOrDigit(ts[j])) j--;
+//            if (ts[i] != ts[j]) return false;
+//            i++;
+//            j--;
+//        }
+//        return true;
+//    }
+
 
     // Using Two Pointer
     public boolean isPalindrome(String s){

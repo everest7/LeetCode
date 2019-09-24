@@ -29,4 +29,22 @@ public class CombinationSum39 {
             }
         }
     }
+
+    /**
+     *
+     */
+//    public void backtracking(int[] candidates, int start, int target, int sum, List<Integer> sub, List<List<Integer>> res) {
+//        if (sum >= target) {
+//            if (sum == target) {
+//                res.add(new ArrayList<>(sub));
+//            }
+//            return;
+//        }
+//        for (int i = start; i < candidates.length; i++) {
+//            sub.add(candidates[i]);
+//            backtracking(candidates, i, target, sum + candidates[i], sub, res);
+//            sub.remove(sub.size() - 1);
+//        }
+//
+//    }
 }

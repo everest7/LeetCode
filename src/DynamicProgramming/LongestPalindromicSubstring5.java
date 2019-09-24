@@ -3,7 +3,7 @@ package DynamicProgramming;
 public class LongestPalindromicSubstring5 {
     public static void main(String[] args) {
         LongestPalindromicSubstring5 lp = new LongestPalindromicSubstring5();
-        String s = "babad";
+        String s = "aaaa";
         System.out.println(lp.longestPalindrome(s));
     }
 
@@ -14,19 +14,35 @@ public class LongestPalindromicSubstring5 {
      * @param s
      * @return
      */
-    public String longestPalindrome(String s){
-        boolean[][] dp = new boolean[s.length()][s.length()];
-        String res = "";
-        for (int j = 0; j < s.length(); j++){
-            for (int i = 0; i <= j; i++){
-                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1]);
-                if (dp[i][j] && res.length() < j - i + 1){
-                    res = s.substring(i, j + 1);
+//    public String longestPalindrome(String s){
+//        boolean[][] dp = new boolean[s.length()][s.length()];
+//        String res = "";
+//        for (int j = 0; j < s.length(); j++){
+//            for (int i = 0; i <= j; i++){
+//                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1]);
+//                if (dp[i][j] && res.length() < j - i + 1){
+//                    res = s.substring(i, j + 1);
+//                }
+//            }
+//
+//        }
+//        return res;
+//    }
+    public String longestPalindrome(String s) {
+        if (s.length() == 0 || s == null) return "";
+        boolean dp[][] = new boolean[s.length()][s.length()];
+        int left = 0, right = 0, len = 0;
+        for (int j = 0; j < s.length(); j++) {
+            for (int i = 0; i < j; i++) {
+                dp[i][j] = (s.charAt(i) == s.charAt(j)) && (j - i <= 2 || dp[i + 1][j - 1]);
+                if (dp[i][j] && len < j - i + 1) {
+                    len = j - i + 1;
+                    left = i;
+                    right = j;
                 }
             }
-
         }
-        return res;
+        return s.substring(left, right + 1);
     }
 
 

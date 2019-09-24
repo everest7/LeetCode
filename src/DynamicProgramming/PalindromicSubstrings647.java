@@ -6,23 +6,36 @@ public class PalindromicSubstrings647 {
         PalindromicSubstrings647 ps = new PalindromicSubstrings647();
         System.out.println(ps.countSubstrings(s));
     }
-    /*
-    DP
-     */
-    public int countSubstrings(String s){
-        if (s == null || s.length() == 0) return 0;
+
+
+    public int countSubstrings(String s) {
         boolean[][] dp = new boolean[s.length()][s.length()];
         int res = 0;
-        for (int j = 0; j < s.length(); j++){
-            for (int i = 0; i <= j; i++){
-                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
-                if (dp[i][j]){
-                    res++;
-                }
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = 0; j <= i; j++) {
+                dp[j][i] = (s.charAt(j) == s.charAt(i)) && (i - j <= 2 || dp[j + 1][i - 1]);
+                res += dp[j][i] ? 1 : 0;
             }
         }
         return res;
     }
+    /*
+    DP
+     */
+//    public int countSubstrings(String s){
+//        if (s == null || s.length() == 0) return 0;
+//        boolean[][] dp = new boolean[s.length()][s.length()];
+//        int res = 0;
+//        for (int j = 0; j < s.length(); j++){
+//            for (int i = 0; i <= j; i++){
+//                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
+//                if (dp[i][j]){
+//                    res++;
+//                }
+//            }
+//        }
+//        return res;
+//    }
 
 
     /*

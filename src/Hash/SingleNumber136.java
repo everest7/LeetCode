@@ -11,6 +11,11 @@ public class SingleNumber136 {
         System.out.println(sn.singleNumber(nums));
     }
 
+    /**
+     * A number XOR itself will get 0.
+     * @param nums
+     * @return
+     */
     public int singleNumber(int[] nums) {
         int res = 0;
         for (int i = 0; i < nums.length; i++){

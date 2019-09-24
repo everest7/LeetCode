@@ -23,7 +23,22 @@ public class IntersectOfTwoList160 {
         IntersectOfTwoList160 it = new IntersectOfTwoList160();
         linkedList2.printAfter(it.getIntersectionNode(linkedList.head, linkedList2.head));
     }
-    // Two Pointer
+    //
+
+    /**
+     * Two Pointer
+     * pointerA = pointerA.next == null ? headB : pointerA.next;
+     * pointerB = pointerB.next == null ? headA : pointerB.next;
+     * This is incorrect since pA and pB will never become null pointer and since there are no same element, the loop will
+     * become a infinite one.
+     *
+     * pointerA = pointerA == null ? headB : pointerA.next;
+     * pointerB = pointerB == null ? headA : pointerB.next;
+     * Using the transition above, pA and pB will both be null after list1 and list2 exactly once. 3 + 2 = 2 + 3
+     * @param headA
+     * @param headB
+     * @return
+     */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB){
         if (headA == null || headB == null) return null;
         ListNode pointerA = headA, pointerB = headB;

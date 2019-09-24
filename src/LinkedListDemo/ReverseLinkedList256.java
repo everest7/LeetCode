@@ -15,12 +15,23 @@ public class ReverseLinkedList256 {
         linkedList.append(5);
         System.out.println("Before reversing:");
         linkedList.printList(linkedList.head);
-        rl.reverseList(linkedList.head);
+
         System.out.println("After reversing: ");
-        linkedList.printList(linkedList.head);
+        linkedList.printList(rl.reverseList(linkedList.head, linkedList.head.next.next.next));
 
     }
-    public ListNode reverseList(ListNode node) {
+//    public ListNode reverseList(ListNode node) {
+//        ListNode curNode = node;
+//        ListNode next, prev = null;
+//        while (curNode != null){
+//            next = curNode.next;
+//            curNode.next = prev;
+//            prev = curNode;
+//            curNode = next;
+//        }
+//        return prev;
+//    }
+    public ListNode reverseList(ListNode node, ListNode end) {
         ListNode curNode = node;
         ListNode next, prev = null;
         while (curNode != null){
@@ -28,8 +39,11 @@ public class ReverseLinkedList256 {
             curNode.next = prev;
             prev = curNode;
             curNode = next;
+            if (curNode == end) {
+                curNode.next = null;
+                break;
+            }
         }
-        head = prev;
-        return head;
+        return prev;
     }
 }

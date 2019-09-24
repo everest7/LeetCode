@@ -3,6 +3,9 @@ package Heap;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Review May 8
+ */
 public class KthSmallestElementMatrix378 {
     public static void main(String[] args) {
         int[][] matrix = { {1,  5,  9},
@@ -19,8 +22,8 @@ public class KthSmallestElementMatrix378 {
         while (left < right){
             int count = 0;
             int mid = left + (right - left) / 2;
-            int j = matrix[0].length - 1;
-            for (int i = 0; i < matrix.length; i++){
+            int j = matrix[0].length - 1; // get the number of column
+            for (int i = 0; i < matrix.length; i++){ // iterate each row
                 while (j >= 0 && matrix[i][j] > mid){
                     j--;
                 }

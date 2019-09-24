@@ -2,7 +2,7 @@ package Hash;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.Stack;
 
 public class DailyTemp739 {
@@ -12,6 +12,22 @@ public class DailyTemp739 {
         int[] temp2 = {72,72};
         System.out.println(Arrays.toString(dt.dailyTemperatures(temp)));
     }
+
+//    public int[] dailyTemperatures(int[] T) {
+//        TreeMap<Integer, Integer> map = new TreeMap<>();
+//        int[] res = new int[T.length];
+//        for (int i = T.length - 1; i >= 0; i--) {
+//            Integer least = map.ceilingKey(T[i]);
+//            if (least != null) {
+//                res[i] = map.get(T[i]);
+//            } else {
+//                res[i] = 0;
+//            }
+//            map.put(T[i], i);
+//        }
+//        return res;
+//    }
+
     // Using Stack
     public int[] dailyTemperatures(int[] temperatures){
         Stack<Integer> stack = new Stack<>();

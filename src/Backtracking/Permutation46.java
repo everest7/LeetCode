@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Review 6/7 2019
+ */
+
 public class Permutation46 {
     public static void main(String[] args) {
         Permutation46 pm = new Permutation46();
@@ -17,6 +21,7 @@ public class Permutation46 {
         return res;
     }
     public void backtrack(List<List<Integer>> res, List<Integer> templist, int[] nums){
+        // Base case
         if (templist.size() == nums.length){
             res.add(new ArrayList<>(templist));
         } else {

@@ -22,11 +22,12 @@ public class DeleteNodeBST450 {
         } else if (key > root.val){
             root.right = deleteNode(root.right, key);
         } else {
+            // the node to be deleted is leaf
             if (root.left == null && root.right == null){
                 root = null;
-            } else if (root.left == null || root.right == null){
+            } else if (root.left == null || root.right == null){ // node to be deleted has only one child
                 root = root.left == null ? root.right : root.left;
-            } else {
+            } else { // node to be deleted has two children
                 int min = minvalue(root.right);
                 root.val = min;
                 root.right = deleteNode(root.right, min);

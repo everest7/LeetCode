@@ -7,20 +7,34 @@ public class SortColor75 {
         int[] nums = {0,0,2,1,1,0};
         int[] nums2 = {1,2,0};
         SortColor75 sc = new SortColor75();
-        sc.sortColors(nums2);
-        System.out.println(Arrays.toString(nums2));
+        sc.sortColors(nums);
+        System.out.println(Arrays.toString(nums));
     }
 
-    public void sortColors(int[] nums){
+//    public void sortColors(int[] nums){
+//        int left = 0, right = nums.length - 1;
+//        int index = 0;
+//        while (index <= right){
+//            if (nums[index] == 0){
+//                swap(nums, index++, left++);
+//            } else if (nums[index] == 1){
+//                index++;
+//            }else {
+//                swap(nums, index++, right--);
+//            }
+//        }
+//    }
+    public void sortColors(int[] nums) {
         int left = 0, right = nums.length - 1;
-        int index = 0;
-        while (index <= right){
-            if (nums[index] == 0){
-                swap(nums, index++, left++);
-            } else if (nums[index] == 1){
-                index++;
-            }else {
-                swap(nums, index++, right--);
+        for (int i = 0; i <= right; i++) {
+            if (nums[i] == 0) {
+                swap(nums, left, i);
+                left++;
+            }
+            else if (nums[i] == 2) {
+                swap(nums, right--, i--);
+                // right--;
+                // i--;
             }
         }
     }
