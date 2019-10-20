@@ -8,6 +8,10 @@ public class LongestIncreasingSubsequence300 {
     }
 
     /**
+     * Follow up: Longest
+     */
+
+    /**
      * Dynamic Programming with Binary Search
      * Initialize a dp array, filled with 0;
      * Iterate each element in the 'nums'. Using binary search to look up if it is in dp array.

@@ -4,10 +4,25 @@ import java.util.Stack;
 
 public class ValidPalindrome125 {
     public static void main(String[] args) {
-        String st = "A man, a plan, a canal: Panama";
+        String st = "A man, a plan, a canal: Panama.";
         String st2 = "race a car";
         ValidPalindrome125 vp = new ValidPalindrome125();
         System.out.println(vp.isPalindrome(st));
+    }
+
+    public boolean isPalindrome(String s) {
+//        String ss = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
+        String ss = s.replaceAll(",|:|;|-|\\.|\\s+", " ").toLowerCase();
+        int i = 0, j = ss.length() - 1;
+        while (i < j) {
+            if (ss.charAt(i) != ss.charAt(j)) {
+                return false;
+            } else {
+                i++;
+                j--;
+            }
+        }
+        return true;
     }
 
 //    public boolean isPalindrome(String s) {
@@ -26,21 +41,21 @@ public class ValidPalindrome125 {
 
 
     // Using Two Pointer
-    public boolean isPalindrome(String s){
-        if (s.length() == 1) return true;
-        String st = s.replaceAll("[^A-Za-z0-9]","").toLowerCase();
-        int low = 0;
-        int high = st.length() - 1;
-        while (low < high){
-            if (st.charAt(low) == st.charAt(high)){
-                low++;
-                high--;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
+//    public boolean isPalindrome(String s){
+//        if (s.length() == 1) return true;
+//        String st = s.replaceAll("[^A-Za-z0-9]","").toLowerCase();
+//        int low = 0;
+//        int high = st.length() - 1;
+//        while (low < high){
+//            if (st.charAt(low) == st.charAt(high)) {
+//                low++;
+//                high--;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     // Using Stack
 //    public boolean isPalindrome(String s) {

@@ -17,12 +17,21 @@ public class ReverseLinkedList256 {
         linkedList.printList(linkedList.head);
 
         System.out.println("After reversing: ");
-        linkedList.printList(rl.reverseList(linkedList.head, linkedList.head.next.next.next));
+        linkedList.printList(rl.reverseListRecur(linkedList.head));
+//        linkedList.printList(rl.reverseList(linkedList.head, linkedList.head.next.next.next));
 
+    }
+
+    public ListNode reverseListRecur(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode temp = reverseListRecur(head.next);
+        head.next.next = head;
+        head.next = null;
+        return temp;
     }
 //    public ListNode reverseList(ListNode node) {
 //        ListNode curNode = node;
-//        ListNode next, prev = null;
+//        ListNode next, prev = null;1
 //        while (curNode != null){
 //            next = curNode.next;
 //            curNode.next = prev;

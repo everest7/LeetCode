@@ -45,10 +45,9 @@ public class MaximumSubarray53 {
 //        max = Math.max(max, rmax + lmax + nums[mid]);
 //        return max;
 //    }
-    /*
+    /**
     DP
      */
-
     public int maxSubArray(int[] nums) {
         // if (nums.length == 0) return null;
         if (nums.length == 1) return nums[0];
@@ -62,6 +61,22 @@ public class MaximumSubarray53 {
         return res;
 
     }
+
+    /**
+     * Reduce time complexity.
+     */
+//    public int maxSubArray(int[] nums) {
+//        if (nums.length == 0) return 0;
+//        if (nums.length == 1) return nums[0];
+//        int curMax = nums[0], max = nums[0];
+//        for (int i = 1; i < nums.length; i++) {
+//            curMax = Math.max(curMax + nums[i], nums[i]);
+//            max = Math.max(curMax, max);
+//        }
+//        return max;
+//    }
+
+
 //    public int maxSubArray(int[] nums){
 //        int[] f = new int[nums.length];
 //        f[0] = nums[0];

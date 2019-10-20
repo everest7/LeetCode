@@ -1,7 +1,8 @@
 package Backtracking;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.*;
 
 public class PermuteString {
     public static void main(String[] args) {
@@ -12,25 +13,28 @@ public class PermuteString {
 
     public List<String> permuteString(String s){
         List<String> res = new ArrayList<>();
-        if (s.length() == 0) return res;
-//        permuteHelper(res, s, 0, s.length() - 1);
-        permuteHelper(res, s, "");
+//        if (s.length() == 0) return res;
+        Set<Integer> visited = new HashSet<>();
+        permuteHelper(res,0, s,  new StringBuilder(), visited);
         return res;
     }
 
-    public void permuteHelper(List<String> res, String s, String chosen){
-        if (s.length() == 0){
-            System.out.println(chosen);
-            res.add(chosen);
+
+    public void permuteHelper(List<String> res, int cur, String s, StringBuilder chosen, Set<Integer> visited){
+        if (chosen.length() == s.length()){
+            res.add(chosen.toString());
+            return;
         } else {
             for (int i = 0; i < s.length(); i++){
-                char c = s.charAt(i);
-                chosen += c;
-                s = s.substring(0, i) + s.substring(i + 1);
-                permuteHelper(res, s, chosen);
-                s = s.substring(0, i) + c + s.substring(i + 1);
-
-                chosen = chosen.substring(0, chosen.length() - 1);
+                if (visited.contains(i)) continue;
+                visited.add(i);
+                chosen.append(s.charAt(i));
+//                s = s.substring(0, i) + s.substring(i + 1);
+                permuteHelper(res, i + 1, s, chosen, visited);
+//                s = s.substring(0, i) + c + s.substring(i + 1);
+                chosen.deleteCharAt(chosen.length() - 1);
+                visited.remove(i);
+//                chosen = chosen.substring(0, chosen.length() - 1);
             }
         }
     }

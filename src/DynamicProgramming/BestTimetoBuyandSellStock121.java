@@ -20,7 +20,7 @@ public class BestTimetoBuyandSellStock121 {
         return maxSoFar;
     }
 
-    /*
+    /**
     Convert the problem into finding the largest sum of subarray
     7, 1, 5, 3, 6, 4
      -6 4  -2  3  -2
@@ -45,7 +45,7 @@ public class BestTimetoBuyandSellStock121 {
 //        return maxSum;
 //    }
 
-    /*
+    /**
     DP: Use minPrice to track the minimum price of the stock, which occurs before
     selling. Use maxProfit to calculate thr profit if sell stock at that day, choose
     the max profit and return it.

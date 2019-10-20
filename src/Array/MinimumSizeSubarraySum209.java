@@ -3,35 +3,72 @@ package Array;
 public class MinimumSizeSubarraySum209 {
     public static void main(String[] args) {
         MinimumSizeSubarraySum209 ms = new MinimumSizeSubarraySum209();
-        int[] nums = {2,3,1,2,4,3};
-        System.out.println(ms.minSubArrayLen(7, nums));
+        int[] nums = {2,3,-6,2,4,3};
+        int[] nums2 = {};
+        int[] nums3 = {1,2,3};
+        int[] nums4 = {-1111,3,-2,6,8,7,-11,14,-7,-9,3,5};
+//        System.out.println(ms.minSubArrayLen(7, nums));
+        System.out.println(ms.minSubArrayLenLargestSum(nums));
+        System.out.println(ms.minSubArrayLenLargestSum(nums2));
+        System.out.println(ms.minSubArrayLenLargestSum(nums3));
+        System.out.println(ms.minSubArrayLenLargestSum(nums4));
     }
 
-    public int minSubArrayLen(int s, int[] nums) {
-        int[] sums = new int[nums.length + 1];
-        for (int i = 1; i < nums.length + 1; i++) {
-            sums[i] = nums[i - 1] + sums[i - 1];
-        }
-        int res = Integer.MAX_VALUE;
-        for (int i = 0; i < sums.length; i++) {
-            int end = binarySearch(sums, sums[i] + s, i + 1, nums.length);
-            if (end == sums.length) break;
-            res = Math.min(res, end - i);
+    public int minSubArrayLenLargestSum(int[] nums) {
+        int left = 0, sum = 0;
+        int res = Integer.MAX_VALUE, max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (sum > max) {
+                max = sum;
+                res = i - left + 1;
+            }else if (sum == max) {
+                res = Math.min(res, i - left + 1);
+            } else if (sum <= 0) {
+                left = i + 1;
+                sum = 0;
+            }
         }
         return res == Integer.MAX_VALUE ? 0 : res;
     }
 
-    public int binarySearch(int[] A, int key, int left, int right) {
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (A[mid] < key) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        return left;
-    }
+//    public int minSubArrayLen(int s, int[] nums) {
+//        int res = Integer.MAX_VALUE, sum = 0, left = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            sum += nums[i];
+//            while (left <= i && sum >= s) {
+//                res = Math.min(res, i - left + 1);
+//                sum -= nums[left++];
+//            }
+//        }
+//        return res == Integer.MAX_VALUE ? 0 : res;
+//    }
+
+//    public int minSubArrayLen(int s, int[] nums) {
+//        int[] sums = new int[nums.length + 1];
+//        for (int i = 1; i < nums.length + 1; i++) {
+//            sums[i] = nums[i - 1] + sums[i - 1];
+//        }
+//        int res = Integer.MAX_VALUE;
+//        for (int i = 0; i < sums.length; i++) {
+//            int end = binarySearch(sums, sums[i] + s, i + 1, nums.length);
+//            if (end == sums.length) break;
+//            res = Math.min(res, end - i);
+//        }
+//        return res == Integer.MAX_VALUE ? 0 : res;
+//    }
+//
+//    public int binarySearch(int[] A, int key, int left, int right) {
+//        while (left <= right) {
+//            int mid = left + (right - left) / 2;
+//            if (A[mid] < key) {
+//                left = mid + 1;
+//            } else {
+//                right = mid - 1;
+//            }
+//        }
+//        return left;
+//    }
     /**
      * Using Binary Search
      */

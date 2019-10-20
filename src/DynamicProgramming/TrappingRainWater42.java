@@ -7,18 +7,43 @@ import java.util.Stack;
  */
 public class TrappingRainWater42 {
     public static void main(String[] args) {
-        int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
+        int[] height = {0,1,0,2,1,-1,1,3,2,1,2,1};
+        int[] height2 = {3, 1, -1, 2, 1, 2};
         TrappingRainWater42 tr = new TrappingRainWater42();
-        System.out.println(tr.trap(height));
+//        System.out.println(tr.trap(height));
+        System.out.println(tr.trapWithLeaking(height));
     }
 
     /**
      * Monotonic Stack
+     * Maintain a descending stack, push element only when it's smaller than the top element of the stack
      */
     public int trap(int[] height) {
         Stack<Integer> stack = new Stack<>();
         int i = 0, res = 0;
         while (i < height.length) {
+            if (stack.isEmpty() || height[i] <= height[stack.peek()]) {
+                stack.push(i++);
+            } else {
+                int lowest = stack.pop();
+                if (stack.isEmpty()) continue;
+                res += (Math.min(height[i], height[stack.peek()]) - height[lowest]) * (i - stack.peek() - 1);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Follow up1
+     */
+    public int trapWithLeaking(int[] height) {
+        Stack<Integer> stack = new Stack<>();
+        int i = 0, res = 0;
+        while (i < height.length) {
+            if (height[i] == -1) {
+                while (!stack.isEmpty()) stack.pop();
+                i++;
+            }
             if (stack.isEmpty() || height[i] <= height[stack.peek()]) {
                 stack.push(i++);
             } else {
@@ -58,6 +83,11 @@ public class TrappingRainWater42 {
 
     /**
      * Dynamic Programming
+     * left_max[i] stores the highest bar in A[:i]
+     * right_max[i] stores the highest bar in A[i:]
+     * Iterate through height, current height sets the lower bound, higher bound is set by the minimum of
+     * {left_max[i], right_max[i]}, current bar can store water: Math.min(left_max[i], right_max[i]) - height[i]
+     *
      */
 //    public int trap(int[] height){
 //        int[] left_max = new int[height.length];

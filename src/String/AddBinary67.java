@@ -9,7 +9,9 @@ public class AddBinary67 {
         String num2 = "10111";
         System.out.println(ab.addBinary(num1,num2));
     }
-
+    /**
+     * Follow up
+     */
     public String addBinary(String a, String b) {
         StringBuilder res = new StringBuilder();
         char[] chs1 = a.toCharArray();
@@ -26,6 +28,25 @@ public class AddBinary67 {
         res.append(carry != 0 ? carry : "");
         return res.reverse().toString();
     }
+
+//    public String addBinary(String a, String b) {
+//        StringBuilder res = new StringBuilder();
+//        char[] chs1 = a.toCharArray();
+//        char[] chs2 = b.toCharArray();
+//        int i = chs1.length - 1, j = chs2.length - 1;
+//        int carry = 0;
+//        while (i >= 0 || j >= 0) {
+//            int sum = carry;
+//            if (i >= 0) sum += (chs1[i--] - '0');
+//            if (j >= 0) sum += (chs2[j--] - '0');
+//            res.append(sum % 2);
+//            carry = sum / 2;
+//        }
+//        res.append(carry != 0 ? carry : "");
+//        return res.reverse().toString();
+//    }
+
+
 //    public String addBinary(String a, String b) {
 //        int carry = 0;
 //        int i = a.length() - 1, j = b.length() - 1;

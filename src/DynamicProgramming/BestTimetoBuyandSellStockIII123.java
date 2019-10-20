@@ -13,6 +13,15 @@ public class BestTimetoBuyandSellStockIII123 {
 
     /**
      * dp[k][i] represents the maximal profit for kth transaction at the ith day.
+     * Base case:
+     * dp[0][i] = 0, dp[k][0] = 0
+     *
+     * Recurrence Relation:
+     * dp[k][i] = max{dp[k][i-1], prices[i] - prices[j] + dp[k-1][j]}, where 0 <= j <= i-1
+     *                hold           buy on ith day
+     *
+     * dp[k][i] = max{dp[k][i-1], prices[i] - min{prices[j] - dp[k-1][j]}}
+     *
      */
 //    public int maxProfit(int[] prices) {
 //        if (prices.length == 0) return 0;

@@ -9,6 +9,7 @@ public class ProductOfArray238 {
         int[] nums2 = {3,2,2,1};
         System.out.println(Arrays.toString(pa.productExceptSelf(nums1)));
         System.out.println(Arrays.toString(pa.productExceptSelf(nums2)));
+        System.out.println(Arrays.toString(pa.productExceptSelf2(nums2)));
     }
 
 //    public int[] productExceptSelf(int[] nums) {
@@ -39,6 +40,7 @@ public class ProductOfArray238 {
 //        }
 //        return ret;
 //    }
+
     public int [] productExceptSelf(int[] nums){
         int[] res = new int[nums.length];
         res[0] = 1;
@@ -52,6 +54,25 @@ public class ProductOfArray238 {
         }
         return res;
 
+    }
+
+    /**
+     * Follow up: Division is allowed.
+     */
+
+    public int[] productExceptSelf2(int[] nums) {
+        int sum = 1, count = 0;
+        for (int num: nums) {
+            if (num == 0) count++;
+            else {
+                sum *= num;
+            }
+        }
+        int[] res = new int[nums.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = nums[i] == 0 ? (count > 1 ? 0 : sum) : (count > 0 ? 0 : sum / nums[i]);
+        }
+        return res;
     }
 
 
